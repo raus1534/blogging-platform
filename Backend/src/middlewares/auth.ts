@@ -1,7 +1,6 @@
 import { RequestHandler } from "express";
 import PasswordResetToken from "#/models/PasswordResetToken";
 import { JwtPayload, verify } from "jsonwebtoken";
-import { JWT_SECRET } from "#/utils/envs";
 import User from "#/models/User";
 
 export const isValidPassResetToken: RequestHandler = async (req, res, next) => {
@@ -27,7 +26,7 @@ export const isAuth: RequestHandler = async (req, res, next) => {
   const token = authorization?.split("BlogIn ")[1];
   if (!token) return res.status(403).json({ error: "Unauthorized request!" });
 
-  const payload = verify(token, JWT_SECRET) as JwtPayload;
+  const payload = verify(token, process.env.JWT_SECRET!) as JwtPayload;
   const id = payload.userId;
 
   const user = await User.findOne({ _id: id, tokens: token });

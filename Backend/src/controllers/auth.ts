@@ -11,7 +11,6 @@ import { RequestHandler } from "express";
 import { isValidObjectId } from "mongoose";
 import PasswordResetToken from "#/models/PasswordResetToken";
 import crypto from "crypto";
-import { JWT_SECRET, PASSWORD_RESET_LINK } from "#/utils/envs";
 import jwt from "jsonwebtoken";
 import { RequestWithFiles } from "#/middlewares/fileParser";
 import formidable from "formidable";
@@ -63,7 +62,10 @@ export const verifyEmail: RequestHandler = async (
     verified: true,
   });
   await emailVerificationToken.findByIdAndDelete(verificationToken._id);
-  const jwtToken = jwt.sign({ userId: isExistingUser._id }, JWT_SECRET);
+  const jwtToken = jwt.sign(
+    { userId: isExistingUser._id },
+    process.env.JWT_SECRET!
+  );
 
   res.json({
     user: {
@@ -127,7 +129,8 @@ export const generateForgetPasswordLink: RequestHandler = async (req, res) => {
     token,
   });
 
-  const resetLink = `${PASSWORD_RESET_LINK}?token=${token}&userId=${user._id}`;
+  const resetLink = `${process.env
+    .PASSWORD_RESET_LINK!}?token=${token}&userId=${user._id}`;
 
   sendForgetPasswordLink({ email: user.email, link: resetLink });
 
@@ -176,7 +179,7 @@ export const signIn: RequestHandler = async (req, res) => {
       .status(403)
       .json({ error: "The email and password do not match." });
 
-  const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET!);
 
   await user.save();
 

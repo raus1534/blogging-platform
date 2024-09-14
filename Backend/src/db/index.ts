@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { MONGO_URI } from "#/utils/envs";
+
+const MONGO_URI = process.env.MONGO_URI!;
 
 mongoose.set("strictQuery", true);
 mongoose

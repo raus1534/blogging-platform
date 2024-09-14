@@ -1,10 +1,9 @@
-import { CLOUD_KEY, CLOUD_NAME, CLOUD_SECRET } from "#/utils/envs";
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
-  cloud_name: CLOUD_NAME,
-  api_key: CLOUD_KEY,
-  api_secret: CLOUD_SECRET,
+  cloud_name: process.env.CLOUD_NAME!,
+  api_key: process.env.CLOUD_KEY!,
+  api_secret: process.env.CLOUD_SECRET!,
   secure: true,
 });
 
