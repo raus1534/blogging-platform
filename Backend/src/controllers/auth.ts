@@ -223,6 +223,7 @@ export const updateProfile: RequestHandler = async (
         height: 300,
         crop: "thumb",
         gravity: "face",
+        folder: "CSBlog/User",
       }
     );
 
