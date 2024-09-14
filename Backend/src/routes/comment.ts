@@ -3,10 +3,10 @@ import {
   deleteComment,
   getComments,
   updateComment,
-} from "#/controllers/comment";
-import { isAuth, isVerified } from "#/middlewares/auth";
-import { validate } from "#/middlewares/validator";
-import { CommentValidationSchema } from "#/utils/validationSchema";
+} from "../controllers/comment";
+import { isAuth, isVerified } from "../middlewares/auth";
+import { validate } from "../middlewares/validator";
+import { CommentValidationSchema } from "../utils/validationSchema";
 import { Router } from "express";
 
 const router = Router();

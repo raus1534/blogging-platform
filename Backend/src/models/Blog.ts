@@ -1,5 +1,4 @@
-import { categories, categoriesTypes } from "#/utils/category";
-import { compare, hash } from "bcrypt";
+import { categories, categoriesTypes } from "../utils/category";
 import { Model, model, ObjectId, Schema } from "mongoose";
 
 export interface BlogDocument {

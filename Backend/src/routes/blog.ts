@@ -9,11 +9,11 @@ import {
   getUserBlog,
   searchBlogs,
   updateBlog,
-} from "#/controllers/blog";
-import { isAuth, isVerified } from "#/middlewares/auth";
-import fileParser from "#/middlewares/fileParser";
-import { validate } from "#/middlewares/validator";
-import { BlogValidationSchema } from "#/utils/validationSchema";
+} from "../controllers/blog";
+import { isAuth, isVerified } from "../middlewares/auth";
+import fileParser from "../middlewares/fileParser";
+import { validate } from "../middlewares/validator";
+import { BlogValidationSchema } from "../utils/validationSchema";
 import { Router } from "express";
 
 const router = Router();

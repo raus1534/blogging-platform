@@ -1,20 +1,20 @@
-import { CreateUser, VerifyEmailRequest } from "#/@types/user";
-import User from "#/models/User";
-import emailVerificationToken from "#/models/EmailVerificationToken";
-import { formatProfile, generateToken } from "#/utils/helper";
+import { CreateUser, VerifyEmailRequest } from "../@types/user";
+import User from "../models/User";
+import emailVerificationToken from "../models/EmailVerificationToken";
+import { formatProfile, generateToken } from "../utils/helper";
 import {
   sendForgetPasswordLink,
   sendPassResetSuccessEmail,
   sendVerificationMail,
-} from "#/utils/mail";
+} from "../utils/mail";
 import { RequestHandler } from "express";
 import { isValidObjectId } from "mongoose";
-import PasswordResetToken from "#/models/PasswordResetToken";
+import PasswordResetToken from "../models/PasswordResetToken";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
-import { RequestWithFiles } from "#/middlewares/fileParser";
+import { RequestWithFiles } from "../middlewares/fileParser";
 import formidable from "formidable";
-import cloudinary from "#/cloud";
+import cloudinary from "../cloud";
 
 export const createBlogger: RequestHandler = async (req: CreateUser, res) => {
   const { email, password, name } = req.body;

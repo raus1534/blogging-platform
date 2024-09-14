@@ -8,16 +8,16 @@ import {
   updatePassword,
   updateProfile,
   verifyEmail,
-} from "#/controllers/auth";
-import { isAuth, isValidPassResetToken, isVerified } from "#/middlewares/auth";
-import fileParser from "#/middlewares/fileParser";
-import { validate } from "#/middlewares/validator";
+} from "../controllers/auth";
+import { isAuth, isValidPassResetToken, isVerified } from "../middlewares/auth";
+import fileParser from "../middlewares/fileParser";
+import { validate } from "../middlewares/validator";
 import {
   CreateUserSchema,
   SignInValidationSchema,
   TokenAndIDValidation,
   UpdatePasswordSchema,
-} from "#/utils/validationSchema";
+} from "../utils/validationSchema";
 import { Router } from "express";
 
 const routes = Router();

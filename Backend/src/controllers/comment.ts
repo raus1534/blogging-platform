@@ -1,8 +1,8 @@
-import { RequestWithFiles } from "#/middlewares/fileParser";
+import { RequestWithFiles } from "../middlewares/fileParser";
 import { RequestHandler } from "express";
-import Blog from "#/models/Blog";
+import Blog from "../models/Blog";
 import { isValidObjectId } from "mongoose";
-import Comment from "#/models/Comment";
+import Comment from "../models/Comment";
 
 interface CreateCommentRequest extends RequestWithFiles {
   body: {

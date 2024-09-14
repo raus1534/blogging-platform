@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
-import PasswordResetToken from "#/models/PasswordResetToken";
+import PasswordResetToken from "../models/PasswordResetToken";
 import { JwtPayload, verify } from "jsonwebtoken";
-import User from "#/models/User";
+import User from "../models/User";
 
 export const isValidPassResetToken: RequestHandler = async (req, res, next) => {
   const { token, userId } = req.body;

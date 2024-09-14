@@ -1,4 +1,4 @@
-import { UserDocument } from "#/models/User";
+import { UserDocument } from "../models/User";
 
 export const generateToken = (length = 6) => {
   // declare a variable

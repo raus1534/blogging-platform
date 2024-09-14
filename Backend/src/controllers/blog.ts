@@ -1,11 +1,11 @@
-import { RequestWithFiles } from "#/middlewares/fileParser";
-import { categoriesTypes } from "#/utils/category";
+import { RequestWithFiles } from "../middlewares/fileParser";
+import { categoriesTypes } from "../utils/category";
 import { RequestHandler } from "express";
-import Blog, { BlogDocument } from "#/models/Blog";
+import Blog, { BlogDocument } from "../models/Blog";
 import formidable from "formidable";
-import cloudinary from "#/cloud";
+import cloudinary from "../cloud";
 import { isValidObjectId } from "mongoose";
-import Comment from "#/models/Comment";
+import Comment from "../models/Comment";
 
 interface CreateBlogRequest extends RequestWithFiles {
   body: {
