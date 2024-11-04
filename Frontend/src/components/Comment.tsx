@@ -66,42 +66,40 @@ export default function Comment({ blog }: { blog: string }) {
 
   useEffect(() => {
     getComment();
-    console.log(comments);
   }, [blog]);
 
   return (
-    <div className="">
-      <h1 className="text-2xl font-semibold">Comments</h1>
+    <div className="p-4 text-gray-900 rounded-lg shadow-md dark:text-white">
+      <h1 className="mb-4 text-2xl font-semibold">Comments</h1>
       {isLoggedIn ? (
-        <div>
+        <div className="mb-4">
           <textarea
             ref={textareaRef}
             name="comment"
             value={comment}
             onChange={handleChange}
             rows={5}
-            className="w-full p-1 bg-transparent border-2 border-gray-600 rounded resize-none outline-primary"
+            className="w-full p-2 transition bg-white border-2 border-gray-300 rounded-lg outline-none resize-none focus:border-primary"
             placeholder="Write your thoughts"
           />
-          {comment.length ? (
-            commentToUpdate ? (
-              <button
-                type="button"
-                className="flex items-center justify-center w-full h-10 p-1 text-lg font-semibold text-white transition rounded cursor-pointer bg-primary hover:bg-opacity-90"
-                onClick={handleCommentUpdate}
-              >
-                {busy ? <ImSpinner5 className="animate-spin" /> : "Update"}
-              </button>
+          <button
+            type="button"
+            className={`flex items-center justify-center w-full h-10 p-1 mt-2 text-lg font-semibold text-white transition rounded-lg ${
+              commentToUpdate
+                ? "bg-blue-600 hover:bg-blue-700"
+                : "bg-primary hover:bg-opacity-90"
+            }`}
+            onClick={commentToUpdate ? handleCommentUpdate : handleSubmit}
+            disabled={busy}
+          >
+            {busy ? (
+              <ImSpinner5 className="animate-spin" />
+            ) : commentToUpdate ? (
+              "Update"
             ) : (
-              <button
-                type="button"
-                className="flex items-center justify-center w-full h-10 p-1 text-lg font-semibold text-white transition rounded cursor-pointer bg-primary hover:bg-opacity-90"
-                onClick={handleSubmit}
-              >
-                {busy ? <ImSpinner5 className="animate-spin" /> : "Submit"}
-              </button>
-            )
-          ) : null}
+              "Submit"
+            )}
+          </button>
         </div>
       ) : (
         <span className="text-sm italic">
@@ -111,54 +109,51 @@ export default function Comment({ blog }: { blog: string }) {
       <div className="mt-4 space-y-3">
         {comments.map((comment) => {
           return (
-            <div className="flex space-x-2">
+            <div
+              key={comment._id}
+              className="flex p-3 space-x-2 bg-white rounded-lg shadow-sm"
+            >
               <img
                 src={comment?.owner?.avatar?.url || logo}
-                className="w-12 rounded-lg"
+                alt="User Avatar"
+                className="w-12 h-12 rounded-full"
               />
               <div className="flex-1">
-                <span className="flex justify-between">
+                <div className="flex justify-between">
                   <span className="font-bold text-primary">
                     {comment?.owner?.name}
                   </span>
                   <span className="text-xs italic text-gray-700">
                     {formatDate(comment?.createdAt)}
                   </span>
-                </span>
-                <span className="flex justify-between">
-                  <span className="text-base">{comment?.comment}</span>
-                  {userId === comment?.owner?._id ? (
-                    <span className="flex space-x-2">
-                      <BiEdit
-                        className="cursor-pointer"
-                        onClick={() => {
-                          setComment(comment.comment);
-                          setCommentToUpdate(comment?._id);
-                          if (textareaRef.current) {
-                            textareaRef.current.scrollIntoView({
-                              behavior: "smooth",
-                            });
-                            textareaRef.current.focus();
-                          }
-                        }}
-                      />
-                      <FiDelete
-                        className="cursor-pointer"
-                        onClick={() => {
-                          handleCommentDelete(comment._id);
-                        }}
-                      />
-                    </span>
-                  ) : null}
-                </span>
+                </div>
+                <p className="text-base">{comment?.comment}</p>
+                {userId === comment?.owner?._id && (
+                  <div className="flex mt-2 space-x-2">
+                    <BiEdit
+                      className="text-blue-600 cursor-pointer hover:text-blue-700"
+                      onClick={() => {
+                        setComment(comment.comment);
+                        setCommentToUpdate(comment?._id);
+                        if (textareaRef.current) {
+                          textareaRef.current.scrollIntoView({
+                            behavior: "smooth",
+                          });
+                          textareaRef.current.focus();
+                        }
+                      }}
+                    />
+                    <FiDelete
+                      className="text-red-600 cursor-pointer hover:text-red-700"
+                      onClick={() => handleCommentDelete(comment._id)}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           );
         })}
-        <NotFoundText
-          visible={comments.length === 0}
-          text="Not Comments Yet!"
-        />
+        <NotFoundText visible={comments.length === 0} text="No Comments Yet!" />
       </div>
     </div>
   );

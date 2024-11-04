@@ -7,17 +7,16 @@ import BlogList from "./BlogList";
 
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div className="pt-4 bg-white dark:bg-gray-900">
       <Container className="flex space-x-5">
-        <div className="h-[90vh] md:w-2/3 space-y-2">
+        <div className="space-y-2 md:w-2/3">
           <Slider />
-          <hr className="border-2 border-black" />
+          <hr className="border-2 border-black dark:border-gray-600" />
           <div className="block md:hidden">
             <RecentPost />
           </div>
           <BlogList />
         </div>
-        {/* //extra */}
         <div className="hidden w-1/3 p-2 space-y-2 md:block">
           <RecentPost />
           <Categories />

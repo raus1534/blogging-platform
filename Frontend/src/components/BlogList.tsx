@@ -16,22 +16,21 @@ export default function BlogList() {
   useEffect(() => {
     getBlogs();
   }, []);
+
   return (
-    <>
-      <div className="w-full h-screen p-3 overflow-scroll">
-        {blogs.map(({ _id, title, createdAt, poster, content }) => {
-          return (
-            <BlogCard
-              key={_id}
-              id={_id}
-              title={title}
-              createdAt={createdAt}
-              poster={poster?.url}
-              content={content}
-            />
-          );
-        })}
-      </div>
-    </>
+    <div className="w-full h-[120vh] p-3 space-y-3 overflow-scroll dark:bg-gray-900">
+      {blogs.map(({ _id, title, createdAt, poster, content }) => {
+        return (
+          <BlogCard
+            key={_id}
+            id={_id}
+            title={title}
+            createdAt={createdAt}
+            poster={poster?.url}
+            content={content}
+          />
+        );
+      })}
+    </div>
   );
 }

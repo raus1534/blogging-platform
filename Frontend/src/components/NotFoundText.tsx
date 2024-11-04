@@ -7,7 +7,7 @@ export default function NotFoundText({
 }) {
   if (!visible) return null;
   return (
-    <h1 className="py-5 text-3xl font-semibold text-center text-primary text-secondary opacity-90">
+    <h1 className="py-5 text-3xl font-semibold text-center text-gray-900 dark:text-white opacity-90">
       {text ? text : "Record Not Found"}
     </h1>
   );
