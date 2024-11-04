@@ -79,7 +79,7 @@ export default function Comment({ blog }: { blog: string }) {
             value={comment}
             onChange={handleChange}
             rows={5}
-            className="w-full p-2 transition bg-white border-2 border-gray-300 rounded-lg outline-none resize-none focus:border-primary"
+            className="w-full p-2 text-gray-900 transition bg-white border-2 border-gray-300 rounded-lg outline-none resize-none focus:border-primary"
             placeholder="Write your thoughts"
           />
           <button
