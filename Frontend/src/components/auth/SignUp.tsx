@@ -21,34 +21,25 @@ const validateUserDetail = ({
   password: string;
 }) => {
   if (!name.trim()) return { ok: false, error: "Name doesn't exist" };
-
   if (!isValidName(name)) return { ok: false, error: "Invalid Name" };
-
   if (!email.trim()) return { ok: false, error: "Email doesn't exist" };
-
   if (!isValidEmail(email)) return { ok: false, error: "Invalid Email" };
-
   if (!password.trim()) return { ok: false, error: "Invalid Password" };
-
   if (password.length < 8)
-    return {
-      ok: false,
-      error: "Password Length Must Be Greater Than 8 Character",
-    };
+    return { ok: false, error: "Password must be at least 8 characters" };
 
   return { ok: true };
 };
+
 export default function SignUp() {
   const navigate = useNavigate();
   const { updateNotification } = useNotification();
-
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
     password: "",
   });
   const { name, email, password } = userInfo;
-
   const { authInfo } = useAuth() as AuthContextType;
   const { isLoggedIn } = authInfo;
 
@@ -72,14 +63,18 @@ export default function SignUp() {
   useEffect(() => {
     if (isLoggedIn) navigate("/");
   }, [isLoggedIn, navigate]);
+
   return (
-    <FormContainer>
+    <FormContainer className="flex items-center justify-center min-h-screen bg-white dark:bg-primary">
       <Container>
-        <form className={commonModalClasses + "w-72"} onSubmit={handleSubmit}>
+        <form
+          className={`${commonModalClasses} w-full max-w-md p-6 mx-auto rounded-lg shadow-lg dark:bg-gray-800 dark:text-white transition-all ease-in-out`}
+          onSubmit={handleSubmit}
+        >
           <Title>Sign Up</Title>
           <InputField
             label="Name"
-            placeholder="YourName"
+            placeholder="Your Name"
             name="name"
             value={name}
             onChange={handleOnChange}
@@ -97,11 +92,12 @@ export default function SignUp() {
             name="password"
             value={password}
             onChange={handleOnChange}
+            type="password"
           />
           <SubmitBtn submitValue="Sign Up" />
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-4 text-sm text-blue-600 dark:text-blue-400">
             <Link to="/auth/signin">Sign In</Link>
-            <Link to="/auth/forget-password">Forget Password</Link>
+            <Link to="/auth/forget-password">Forget Password?</Link>
           </div>
         </form>
       </Container>

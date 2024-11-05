@@ -19,7 +19,7 @@ export default function BlogCard({
   return (
     <Link
       to={`/blog/${id}`}
-      className="flex flex-col items-start p-4 text-gray-900 transition-shadow duration-300 bg-white rounded-lg shadow-lg dark:text-white dark:bg-gray-800 sm:flex-row sm:items-center hover:shadow-xl"
+      className="flex flex-col items-start p-4 transition-shadow duration-300 bg-white rounded-lg shadow-lg text-primary dark:text-white dark:bg-gray-800 sm:flex-row sm:items-center hover:shadow-xl"
     >
       <div className="w-full mb-3 sm:w-2/3 sm:mb-0">
         <h3 className="text-lg font-bold">{title}</h3>

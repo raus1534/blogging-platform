@@ -45,9 +45,9 @@ export default function ConfirmPassword() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password.one.trim().length < 8)
-      return updateNotification("error", "Password Must Be 8 Character Long");
+      return updateNotification("error", "Password Must Be 8 Characters Long");
     if (password.one !== password.two)
-      return updateNotification("error", "Password Doesn't Match");
+      return updateNotification("error", "Passwords Don't Match");
     if (!token || !userId) return;
 
     const { message, error } = await resetPassword({
@@ -69,12 +69,12 @@ export default function ConfirmPassword() {
   if (isVerifying) {
     return (
       <FormContainer>
-        <Container className="text-4xl font-semibold dark:text-white">
+        <Container className="text-4xl font-semibold dark:text-gray-100">
           <div className="flex items-center space-x-4">
-            <h1 className="text-primary">
-              Please Wait Token is Being Verifying
+            <h1 className="text-primary dark:text-gray-300">
+              Please Wait, Token is Being Verified
             </h1>
-            <ImSpinner5 className="text-4xl animate-spin dark:text-white text-primary" />
+            <ImSpinner5 className="text-4xl animate-spin text-primary dark:text-gray-100" />
           </div>
         </Container>
       </FormContainer>
@@ -83,9 +83,9 @@ export default function ConfirmPassword() {
   if (!isValid) {
     return (
       <FormContainer>
-        <Container className="text-4xl font-semibold dark:text-white">
+        <Container className="text-4xl font-semibold dark:text-gray-100">
           <div className="flex items-center space-x-4">
-            <h1>Invalid Token</h1>
+            <h1 className="text-red-600 dark:text-red-500">Invalid Token</h1>
           </div>
         </Container>
       </FormContainer>
@@ -95,7 +95,10 @@ export default function ConfirmPassword() {
   return (
     <FormContainer>
       <Container>
-        <form onSubmit={handleSubmit} className={commonModalClasses + "w-80"}>
+        <form
+          onSubmit={handleSubmit}
+          className={`${commonModalClasses} w-80 bg-white dark:bg-primary p-6 rounded-lg shadow-lg`}
+        >
           <Title>New Password</Title>
           <InputField
             label="New Password"
@@ -103,6 +106,7 @@ export default function ConfirmPassword() {
             name="one"
             value={password.one}
             onChange={handleChange}
+            className="dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
           />
           <InputField
             label="Confirm Password"
@@ -110,6 +114,7 @@ export default function ConfirmPassword() {
             name="two"
             value={password.two}
             onChange={handleChange}
+            className="dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
           />
           <SubmitBtn submitValue="Confirm Password" />
         </form>

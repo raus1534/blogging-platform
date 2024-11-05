@@ -63,10 +63,13 @@ export default function BlogForm({ onSubmit, busy, initialValue }: Props) {
   }, [initialValue]);
 
   return (
-    <form className="p-5 space-y-5" onSubmit={handleSubmit}>
+    <form
+      className="p-5 space-y-5 bg-white dark:bg-gray-800"
+      onSubmit={handleSubmit}
+    >
       <div className="flex items-center space-x-4">
         <label
-          className="w-full overflow-hidden border-2 cursor-pointer sm:h-[420px] h-[190px] border-primary sm:rounded-xl"
+          className="w-full overflow-hidden border-2 cursor-pointer sm:h-[420px] h-[190px] border-primary dark:border-gray-600 sm:rounded-xl"
           htmlFor="poster"
         >
           <input
@@ -81,7 +84,7 @@ export default function BlogForm({ onSubmit, busy, initialValue }: Props) {
             {posterForUi ? (
               <img src={posterForUi} alt="Poster" className="w-full" />
             ) : (
-              <FaCloudUploadAlt className="w-1/2 text-gray-500 h-1/2" />
+              <FaCloudUploadAlt className="w-1/2 text-gray-500 dark:text-gray-300 h-1/2" />
             )}
           </div>
         </label>
@@ -92,14 +95,14 @@ export default function BlogForm({ onSubmit, busy, initialValue }: Props) {
           id="title"
           name="title"
           type="text"
-          className="w-full p-1 bg-transparent border-2 rounded outline-none dark:border-dark-subtle peer"
+          className="w-full p-1 bg-transparent border-2 rounded outline-none text-primary dark:border-gray-600 dark:text-white peer"
           placeholder="Blog Title"
           value={blogData.title}
           onChange={handleChange}
         />
         <label
           htmlFor="title"
-          className="self-start font-semibold dark:text-dark-subtle"
+          className="self-start font-semibold text-primary dark:text-gray-300"
         >
           Title
         </label>
@@ -108,7 +111,7 @@ export default function BlogForm({ onSubmit, busy, initialValue }: Props) {
         <select
           id="category"
           name="category"
-          className="w-full p-1 bg-transparent border-2 rounded outline-none dark:border-dark-subtle peer"
+          className="w-full p-1 bg-transparent border-2 rounded outline-none text-primary dark:border-gray-600 dark:text-white peer"
           value={blogData.category}
           onChange={handleChange}
         >
@@ -121,7 +124,7 @@ export default function BlogForm({ onSubmit, busy, initialValue }: Props) {
         </select>
         <label
           htmlFor="category"
-          className="self-start font-semibold dark:text-dark-subtle"
+          className="self-start font-semibold text-primary dark:text-gray-300"
         >
           Category
         </label>
@@ -129,7 +132,7 @@ export default function BlogForm({ onSubmit, busy, initialValue }: Props) {
       <div className="">
         <label
           htmlFor="blog"
-          className="self-start font-semibold dark:text-dark-subtle"
+          className="self-start font-semibold text-primary dark:text-gray-300"
         >
           Blog
         </label>

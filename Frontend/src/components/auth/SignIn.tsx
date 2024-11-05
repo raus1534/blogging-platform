@@ -35,8 +35,7 @@ export default function SignIn() {
   const { email, password } = userInfo;
   const { updateNotification } = useNotification();
   const { authInfo, handleLogin } = useAuth() as AuthContextType;
-  const { isLoggedIn } = authInfo;
-  const { isPending } = authInfo;
+  const { isLoggedIn, isPending } = authInfo;
   const navigate = useNavigate();
 
   const handleOnChange = ({ target }: { target: HTMLInputElement }) => {
@@ -58,7 +57,10 @@ export default function SignIn() {
   return (
     <FormContainer>
       <Container>
-        <form className={commonModalClasses + "w-72"} onSubmit={handleSubmit}>
+        <form
+          className={`${commonModalClasses} w-full max-w-md p-6 mx-auto rounded-lg shadow-lg dark:bg-gray-800 dark:text-white transition-all ease-in-out`}
+          onSubmit={handleSubmit}
+        >
           <Title>Sign In</Title>
           <InputField
             label="Email"
@@ -75,7 +77,7 @@ export default function SignIn() {
             onChange={handleOnChange}
           />
           <SubmitBtn submitValue="Sign In" busy={isPending} />
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-4 text-sm text-blue-600 dark:text-blue-400">
             <Link to="/auth/signup">Sign Up</Link>
             <Link to="/auth/forget-password">Forget Password</Link>
           </div>

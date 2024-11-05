@@ -12,7 +12,7 @@ export default function SubmitBtn({ submitValue, busy, onClick, type }: Props) {
       type={type || "submit"}
       onClick={onClick}
       value={submitValue}
-      className="flex items-center justify-center w-full h-10 p-1 text-lg font-semibold text-white transition rounded cursor-pointer bg-primary hover:bg-opacity-90"
+      className="flex items-center justify-center w-full h-10 p-1 text-lg font-semibold text-white transition rounded cursor-pointer bg-primary dark:text-primary dark:bg-white hover:bg-opacity-90"
     >
       {busy ? <ImSpinner5 className="animate-spin" /> : submitValue}
     </button>

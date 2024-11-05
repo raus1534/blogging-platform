@@ -7,7 +7,7 @@ import BlogList from "./BlogList";
 
 export default function Home() {
   return (
-    <div className="pt-4 bg-white dark:bg-gray-900">
+    <div className="pt-4 bg-white dark:bg-primary">
       <Container className="flex space-x-5">
         <div className="space-y-2 md:w-2/3">
           <Slider />

@@ -40,8 +40,10 @@ export default function CreateBlog() {
     return navigate("/dashboard");
   };
   return (
-    <Container>
-      <BlogForm onSubmit={handleUpload} busy={busy} />
-    </Container>
+    <div className="bg-white text-primary dark:bg-primary dark:text-white">
+      <Container>
+        <BlogForm onSubmit={handleUpload} busy={busy} />
+      </Container>
+    </div>
   );
 }

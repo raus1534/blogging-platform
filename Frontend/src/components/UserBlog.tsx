@@ -46,43 +46,50 @@ export default function UserBlog() {
   useEffect(() => {
     getBlogs();
   }, []);
+
   return (
     <>
-      <div className="flex-1 h-screen space-y-4">
+      <div className="flex-1 h-screen space-y-4 bg-gray-100 dark:bg-primary">
         <Link
           to="/blog/create"
           className="flex items-center justify-center w-1/2 h-10 p-1 text-lg font-semibold text-white transition rounded cursor-pointer sm:w-1/5 bg-primary hover:bg-opacity-90"
         >
           Create Blog
         </Link>
-        <h1 className="text-2xl font-bold">My Blogs</h1>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+          My Blogs
+        </h1>
         <div className="overflow-scroll h-[85%]">
           {blogs.map(({ _id: id, title, poster }) => {
             return (
               <div
                 key={id}
-                className="flex items-center w-full space-y-2 border-b-2 border-primary"
+                className="flex flex-col items-center w-full space-y-2 border-b-2 md:flex-row border-primary dark:border-gray-600"
               >
                 <Link
                   to={"/blog/" + id}
-                  className="flex items-center w-full p-1 space-x-3 space-y-2"
+                  className="flex flex-col items-center w-full p-1 space-x-3 space-y-2 md:flex-row"
                 >
                   <img
                     src={poster.url}
                     alt="blog"
-                    className="h-16 rounded-lg"
+                    className="object-cover w-32 h-16 rounded-lg" // Set a uniform width with object-cover
                   />
                   <div>
-                    <p className="text-lg font-semibold">{title}</p>
-                    <span className="text-xs text-gray-700">July 1, 2024</span>
+                    <p className="text-lg font-semibold text-gray-800 dark:text-white">
+                      {title}
+                    </p>
+                    <span className="text-xs text-gray-700 dark:text-gray-300">
+                      July 1, 2024
+                    </span>
                   </div>
                 </Link>
                 <div className="flex px-2 space-x-3 text-xl">
                   <Link to={"/blog/update/" + id}>
-                    <CiEdit className="cursor-pointer" />
+                    <CiEdit className="text-gray-700 cursor-pointer dark:text-gray-300" />
                   </Link>
                   <MdDelete
-                    className="cursor-pointer"
+                    className="text-gray-700 cursor-pointer dark:text-gray-300"
                     onClick={() => {
                       setShowConfirmModal(true);
                       setSelectedBlog(id);
@@ -92,6 +99,7 @@ export default function UserBlog() {
               </div>
             );
           })}
+
           <NotFoundText visible={showNotFound} text="No Blogs Yet :(" />
         </div>
       </div>

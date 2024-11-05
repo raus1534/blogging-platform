@@ -69,7 +69,7 @@ export default function Comment({ blog }: { blog: string }) {
   }, [blog]);
 
   return (
-    <div className="p-4 text-gray-900 rounded-lg shadow-md dark:text-white">
+    <div className="p-4 rounded-lg shadow-md text-primary dark:text-white">
       <h1 className="mb-4 text-2xl font-semibold">Comments</h1>
       {isLoggedIn ? (
         <div className="mb-4">
@@ -79,12 +79,12 @@ export default function Comment({ blog }: { blog: string }) {
             value={comment}
             onChange={handleChange}
             rows={5}
-            className="w-full p-2 text-gray-900 transition bg-white border-2 border-gray-300 rounded-lg outline-none resize-none focus:border-primary"
+            className="w-full p-2 transition bg-white border-2 border-gray-300 rounded-lg outline-none resize-none text-primary focus:border-primary"
             placeholder="Write your thoughts"
           />
           <button
             type="button"
-            className={`flex items-center justify-center w-full h-10 p-1 mt-2 text-lg font-semibold text-white transition rounded-lg ${
+            className={`flex items-center justify-center w-full h-10 p-1 mt-2 text-lg dark:bg-white dark:text-primary bg-primary text-white  font-semibold transition rounded-lg ${
               commentToUpdate
                 ? "bg-blue-600 hover:bg-blue-700"
                 : "bg-primary hover:bg-opacity-90"

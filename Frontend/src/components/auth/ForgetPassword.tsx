@@ -29,10 +29,14 @@ export default function ForgetPassword() {
     if (error) return updateNotification("error", error);
     updateNotification("success", message);
   };
+
   return (
-    <FormContainer>
+    <FormContainer className="bg-white dark:bg-primary">
       <Container>
-        <form onSubmit={handleSubmit} className={commonModalClasses + "w-96"}>
+        <form
+          onSubmit={handleSubmit}
+          className={`${commonModalClasses} w-full max-w-lg p-6 mx-auto rounded-lg shadow-lg dark:bg-gray-800 dark:text-white transition-all ease-in-out`}
+        >
           <Title>Forget Password</Title>
           <InputField
             label="Email"
@@ -42,7 +46,7 @@ export default function ForgetPassword() {
             onChange={handleChange}
           />
           <SubmitBtn submitValue="Send Email" />
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-4 text-sm text-blue-600 dark:text-blue-400">
             <Link to="/auth/signup">Sign Up</Link>
             <Link to="/auth/signin">Sign In</Link>
           </div>

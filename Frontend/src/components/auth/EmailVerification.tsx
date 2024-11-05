@@ -62,29 +62,32 @@ export default function EmailVerification() {
   }, [user, navigate, isLoggedIn, isVerified]);
 
   return (
-    <FormContainer>
+    <FormContainer className="bg-white dark:bg-primary">
       <Container>
-        <form onSubmit={handleSubmit} className={commonModalClasses}>
-          <div>
+        <form
+          onSubmit={handleSubmit}
+          className={`${commonModalClasses} max-w-lg p-8 bg-white rounded-lg shadow-md dark:bg-primary dark:text-gray-100`}
+        >
+          <div className="text-center">
             <Title>Please Enter The OTP To Verify Your Account</Title>
-            <p className="font-bold text-center dark:text-dark-subtle text-secondary">
+            <p className="font-semibold text-gray-700 dark:text-gray-300">
               OTP has been sent to {user.email.charAt(0)}****@gmail.com
             </p>
           </div>
-          <div className="flex items-center justify-between space-x-4">
+          <div className="flex items-center justify-center my-4 space-x-4">
             <input
               type="number"
               value={otp}
-              onChange={(e) => handleOTPChange(e)}
-              className="w-full h-12 text-2xl font-bold text-center bg-transparent border-2 rounded outline-none border-primary focus:border-primary text-primary"
+              onChange={handleOTPChange}
+              className="w-full h-12 px-4 text-2xl font-bold text-center transition-colors bg-transparent border-2 rounded-lg outline-none border-primary text-primary dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:border-primary dark:focus:border-blue-500"
             />
           </div>
-          <div className="">
+          <div className="space-y-4">
             <SubmitBtn submitValue="Verify" />
             <button
               onClick={handleResendOTP}
               type="button"
-              className="flex justify-center h-4 mt-2 text-lg font-semibold text-center text-blue-500 "
+              className="w-full text-lg font-semibold text-center text-blue-600 dark:text-blue-400"
             >
               I don't have an OTP
             </button>

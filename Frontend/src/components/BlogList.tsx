@@ -5,7 +5,7 @@ import BlogCard from "./BlogCard";
 
 const BlogSkeleton = () => {
   return (
-    <div className="w-full h-[120vh] p-3 space-y-3 overflow-scroll dark:bg-gray-900 animate-pulse">
+    <div className="w-full h-[120vh] p-3 space-y-3 overflow-scroll dark:bg-primary animate-pulse">
       {[...Array(5)].map((_, index) => (
         <div
           key={index}
@@ -44,7 +44,7 @@ export default function BlogList() {
     return <BlogSkeleton />;
   }
   return (
-    <div className="w-full h-[120vh] p-3 space-y-3 overflow-scroll dark:bg-gray-900">
+    <div className="w-full h-[120vh] p-3 space-y-3 overflow-scroll dark:bg-primary">
       {blogs?.map(({ _id, title, createdAt, poster, content }) => {
         return (
           <BlogCard

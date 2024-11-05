@@ -59,7 +59,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-50 w-full transition-colors duration-200 bg-white border-b border-blue-100 shadow-sm dark:bg-gray-900 dark:border-gray-800">
+      <div className="sticky top-0 z-50 w-full transition-colors duration-200 bg-white border-b border-blue-100 shadow-sm dark:bg-primary dark:border-gray-800">
         <div className="px-4 mx-auto max-w-7xl">
           {/* Main Navbar */}
           <div className="flex items-center justify-between h-16">
@@ -142,6 +142,15 @@ const Navbar = () => {
                   >
                     <LogOut size={20} />
                   </button>
+
+                  {/* Mobile Menu Button */}
+                  <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-1.5 transition-colors rounded-lg md:hidden hover:bg-blue-50 text-slate-600 dark:text-slate-200 dark:hover:bg-gray-800 sm:p-2"
+                    aria-label="Toggle mobile menu"
+                  >
+                    <Menu size={20} />
+                  </button>
                 </div>
               ) : (
                 <Link
@@ -151,20 +160,11 @@ const Navbar = () => {
                   Sign In
                 </Link>
               )}
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-1.5 transition-colors rounded-lg md:hidden hover:bg-blue-50 text-slate-600 dark:text-slate-200 dark:hover:bg-gray-800 sm:p-2"
-                aria-label="Toggle mobile menu"
-              >
-                <Menu size={20} />
-              </button>
             </div>
           </div>
 
           {/* Mobile Menu */}
-          {isMobileMenuOpen && (
+          {isLoggedIn && isMobileMenuOpen && (
             <div className="py-4 border-t border-blue-100 dark:border-gray-800 md:hidden">
               <nav className="flex flex-col space-y-2">
                 <Link
@@ -179,12 +179,13 @@ const Navbar = () => {
                 >
                   Blog
                 </Link>
-                {isLoggedIn && (
-                  <button className="flex items-center px-4 py-2 text-sm transition-colors rounded-lg hover:bg-blue-50 text-slate-600 dark:text-slate-200 dark:hover:bg-gray-800">
-                    <LogOut size={16} className="mr-2" />
-                    Logout
-                  </button>
-                )}
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center px-4 py-2 text-sm transition-colors rounded-lg hover:bg-blue-50 text-slate-600 dark:text-slate-200 dark:hover:bg-gray-800"
+                >
+                  <LogOut size={16} className="mr-2" />
+                  Logout
+                </button>
               </nav>
             </div>
           )}
@@ -193,7 +194,7 @@ const Navbar = () => {
 
       {isSearchOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 backdrop-blur-sm dark:bg-gray-900/95" // Changed items-start to items-center
+          className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 backdrop-blur-sm dark:bg-primary/95"
           onClick={() => setIsSearchOpen(false)}
         >
           <div
@@ -202,27 +203,23 @@ const Navbar = () => {
           >
             <button
               onClick={() => setIsSearchOpen(false)}
-              className="absolute top-3 right-3 p-1.5 transition-colors rounded-lg hover:bg-blue-50 text-slate-600 dark:text-slate-200 dark:hover:bg-gray-800"
+              className="absolute top-3 right-3 p-1.5 transition-colors rounded-lg hover:bg-blue-50 text-slate-600 dark:text-slate-200 dark:hover:bg-gray-700"
+              aria-label="Close search"
             >
               <X size={20} />
             </button>
             <form onSubmit={handleSearchSubmit} className="relative">
-              <h2 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white">
-                Search posts
-              </h2>
-              <div className="relative">
-                <Search
-                  size={18}
-                  className="absolute transform -translate-y-1/2 left-3 top-1/2 text-slate-400 dark:text-slate-500"
-                />
-                <input
-                  type="search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search posts..."
-                  className="w-full py-2 pl-10 pr-4 text-sm transition-all border rounded-lg outline-none border-slate-200 focus:border-blue-300 focus:ring-4 focus:ring-blue-100 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-900"
-                />
-              </div>
+              <Search
+                size={18}
+                className="absolute -translate-y-1/2 left-3 top-1/2 text-slate-400 dark:text-slate-500"
+              />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search posts..."
+                className="w-full py-2 pl-10 pr-4 text-sm transition-all border rounded-lg outline-none border-slate-200 focus:border-blue-300 focus:ring-4 focus:ring-blue-100 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-900"
+              />
             </form>
           </div>
         </div>

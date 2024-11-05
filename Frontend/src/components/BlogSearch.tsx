@@ -8,7 +8,7 @@ import BlogCard from "./BlogCard";
 
 const BlogSearchSkeleton = ({ query }: { query: string }) => {
   return (
-    <div className="pt-4 text-gray-900 bg-white dark:text-white dark:bg-gray-900">
+    <div className="pt-4 bg-white text-primary dark:text-white dark:bg-primary">
       <Container className="flex">
         <div className="w-full p-4 py-3 space-y-2">
           <h1 className="text-2xl font-bold sm:text-3xl">
@@ -64,7 +64,7 @@ export default function BlogSearch() {
   if (loading) return <BlogSearchSkeleton query={query} />;
 
   return (
-    <div className="pt-4 text-gray-900 bg-white dark:text-white dark:bg-gray-900">
+    <div className="pt-4 bg-white text-primary dark:text-white dark:bg-primary">
       <Container className="flex">
         <div className="w-full p-4 py-3 space-y-2">
           <h1 className="text-2xl font-bold sm:text-3xl">

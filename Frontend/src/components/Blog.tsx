@@ -53,7 +53,7 @@ export default function Blog() {
   }, [blogId]);
 
   return (
-    <div className="pt-4 bg-white dark:bg-gray-900">
+    <div className="pt-4 bg-white dark:bg-primary">
       <Container className="flex">
         {loading || !singleBlog ? (
           <BlogSkeleton />
@@ -67,7 +67,7 @@ export default function Blog() {
               />
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <h1 className="text-2xl font-bold text-gray-900 sm:text-4xl dark:text-white">
+                  <h1 className="text-2xl font-bold text-primary sm:text-4xl dark:text-white">
                     {singleBlog?.title}
                   </h1>
                   <span className="flex items-center pr-5 space-x-1 text-gray-600 dark:text-gray-400">

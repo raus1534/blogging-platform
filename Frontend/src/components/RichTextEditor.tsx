@@ -37,7 +37,7 @@ export default function RichTextEditor({
         value={value}
         onChange={onChange}
         modules={modules}
-        className="pb-20 sm:pb-10 h-80"
+        className="pb-20 text-primary sm:pb-10 h-80 dark:text-white"
       />
     </>
   );
